@@ -1,0 +1,22 @@
+{% extends 'tttwars/layout.html' %}
+{% load static %}
+
+{% block title %}
+The Game
+{% endblock %}
+
+{% block body %}
+    <div id="funnystuff" style="float: right;">
+    </div>
+    <div id="board"></div>
+    <div id="chatarea" style="margin-top: 20px;">
+        <textarea id="chat-log" cols="48" rows="5"></textarea><br>
+        <input id="chat-message-input" type="text" size="49" placeholder="Type a message here"><br>
+        <input id="chat-message-submit" type="input" value="Send" style="margin-top: 10px;" class="btn btn-success">
+    </div>
+    {{ room_id|json_script:"room-id" }}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'tttwars/room.js' %}"></script>
+{% endblock %}

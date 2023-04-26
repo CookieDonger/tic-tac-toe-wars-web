@@ -1,0 +1,30 @@
+{% extends 'tttwars/layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{ request.user }}'s Finished Games
+{% endblock %}
+
+{% block body %}
+    <div class="gamelistings">
+        <h3>Finished Games</h3>
+        {% for game in games %}
+            <div class="gamelisting" data-id="{{ game.id }}">
+                <div class="playerlist">
+                    {% for player in game.players.all %}
+                    <div>Player: {{ player }} </div>
+                    <div>Rating: {{ player.rating }}</div>
+                    {% endfor %}
+                </div>
+                <div>
+                    Game {{ game.gamenumber }}
+                    Move {{ game.movecount }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'tttwars/history.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'tttwars/layout.html' %}
+{% load static %}
+
+{% block title %}
+Finished Game {{ room_id }}
+{% endblock %}
+
+{% block body %}
+    <div id="board"></div>
+    {{ room_id|json_script:"room-id" }}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'tttwars/historygame.js' %}"></script>
+{% endblock %}

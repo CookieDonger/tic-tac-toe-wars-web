@@ -1,0 +1,45 @@
+{% extends 'tttwars/layout.html' %}
+{% load static %}
+
+{% block title %}
+Register for a new account
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row" style="text-align: center">
+        <h1 style="font-weight: bold; color: white;">Join Today!</h2>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-7 col-md-5 col-lg-3">
+            {% if message %}
+                <div class="alert alert-danger" role="alert" style="text-align: center; padding: 4px;">
+                    {{ message }}
+                </div>
+            {% endif %}
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input autofocus class="form-control" type="text" name="username" placeholder="Enter Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <label for="password" style="font-size: 12px;">Must be at least 8 characters long and have a number in it</label>
+                    <input class="form-control" type="password" name="password" placeholder="Enter Password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmation">Confirm Password</label>
+                    <input class="form-control" type="password" name="confirmation" placeholder="Re-enter Password">
+                </div>
+                <div class="text-center" style="padding-top: 20px;">
+                    <input class="btn btn-success btn-lg" type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row" style="text-align: center; margin-top: 30px;">
+        <a href="{% url 'login' %}">Already have an account? Login here</a>
+    </div>
+</div>
+{% endblock %}

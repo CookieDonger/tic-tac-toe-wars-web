@@ -1,0 +1,33 @@
+{% extends 'tttwars/layout.html' %}
+{% load static %}
+
+{% block title %}
+{{ user.username }}'s Profile
+{% endblock %}
+
+{% block body %}
+<div id="profilebody" style="text-align: center;">
+    <h1>{{ user }}'s Profile</h1>
+    <h4>Joined on {{ user.date_joined }}</h4>
+    <h4>Rating: {{ user.rating }}</h4>
+    {% if not is_owner %}
+        <input id="friendbutton" class="btn btn-success btn-lg" type="submit" value="Request Friend">
+    {% endif %}
+</div>
+<div class="friendslist" style="text-align: center; margin-top: 50px;">
+    <h5 style="display: inline-block">Friends</h5>
+    <div class="coolnum">{{ user.friends.count }}</div>
+    <div>
+        {% for friend in user.friends.all %}
+        <div class="friendblock">
+            <a class="link2" href="{% url 'profile' friend %}">{{ friend }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'tttwars/profile.js' %}"></script>
+{% endblock %}

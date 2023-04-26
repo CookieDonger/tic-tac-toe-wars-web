@@ -1,0 +1,59 @@
+{% extends 'tttwars/layout.html' %}
+{% load static %}
+
+{% block title %}
+Play a game
+{% endblock %}
+
+{% block body %}
+<div style="text-align:center;">
+    <div>
+        Create a room
+        <form action="{% url 'createroom' %}" method="POST">
+            {% csrf_token %}
+            <input id="create-room" type="submit" value="Create" class="btn btn-success">
+        </form>
+    </div>
+    <div style="margin-top: 20px;">
+        Spectate a room
+        <input id="room-name-input" type="text" size="100" class="form-control" style="width: 200px; display: block; margin: 10px auto 0px auto;"><br>
+        <input id="room-name-submit" type="button" value="Enter" class="btn btn-success" style="margin-top: -10px;">
+    </div>
+    <div class="gamelistings">
+        <h3>Open Games</h3>
+        {% for game in active_games %}
+        <div class="gamelisting" data-id="{{ game.id }}">
+            <div class="playerlist">    
+                {% for player in game.players.all %}
+                <div>Player: {{ player }} </div>
+                <div>Rating: {{ player.rating }}</div>
+                {% endfor %}
+            </div>
+            <div>
+                Game {{ game.gamenumber }}
+                Move {{ game.movecount }}
+            </div>
+        </div>
+        {% endfor %}
+        <h3>My Games</h3>
+        {% for game in my_games %}
+        <div class="gamelisting" data-id="{{ game.id }}">
+            <div class="playerlist">    
+                {% for player in game.players.all %}
+                <div>Player: {{ player }} </div>
+                <div>Rating: {{ player.rating }}</div>
+                {% endfor %}
+            </div>
+            <div>
+                Game {{ game.gamenumber }}
+                Move {{ game.movecount }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'tttwars/play.js' %}"></script>
+{% endblock %}
