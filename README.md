@@ -31,8 +31,10 @@ of the website is much different and instead is focused on porting my Tic Tac To
 supports direct communication between users.
 </p>
 
-<br>
-<br>
+### Running the Server
+<p>
+To run the server, download the source code and then create a venv and download all of the files in the requirements.txt into it. Then, you need to start a redis port on port 6379, you can find a simple way to do so here: https://stackoverflow.com/questions/41371402/connecting-to-redis-running-in-docker-container-from-host-machine. Once you have done that, you can simply run python3 manage.py runserver in the main directory to run the server and it should start up a webpage at 127.0.0.1:8000.
+</p>
 
 ## Files
 
